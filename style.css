@@ -53,10 +53,6 @@ button:hover {
   text-align: right;
 }
 
-.break {
-  flex-basis: 100%;
-}
-
 .start-button {
   font-size: 20px;
 }
