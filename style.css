@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  text-align: center;
+}
+
+button {
+  padding: 8px 16px;
+  border: 1px solid tan;
+  border-radius: 1000px;
+  background-color: wheat;
+  color: saddlebrown;
+  font-size: 16px;
+  transition: all 0.25s;
+}
+
+button:hover {
+  background-color: tan;
+  color: white;
+}
+
+.banner {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.banner-image {
+  align-self: center;
+  margin: 0 -150px 0 -50px;
+  width: 75%;
+  max-width: 600px;
+}
+
+.heading {
+  align-self: start;
+  margin: 0 0 8px;
+  text-align: left;
+}
+
+.heading span {
+  font-family: "Parisienne", cursive;
+  font-size: 1.375em;
+  line-height: 1;
+}
+
+.subheading {
+  align-self: end;
+  margin: 0 0 24px;
+  text-align: right;
+}
+
+.break {
+  flex-basis: 100%;
+}
+
+.start-button {
+  font-size: 20px;
+}
+
+.question-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 75%;
+  max-width: 560px;
+  margin: auto;
+}
+
+.question-paragraph {
+  width: 100%;
+  margin: 0;
+  padding: 8px;
+  border-radius: 1000px;
+  background-color: tan;
+  color: white;
+}
+
+.option-container {
+  flex-basis: calc(50% - 4px);
+}
+
+.option-radio-button {
+  display: none;
+}
+
+.option-label {
+  display: inline-block;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid darkseagreen;
+  border-radius: 1000px;
+  background-color: rgb(187, 227, 187);
+  color: seagreen;
+  transition: all 0.25s;
+}
+
+.option-label:hover,
+.option-radio-button:checked + .option-label {
+  background-color: darkseagreen;
+  color: white;
+}
+
+.tea-image-description {
+  margin: 0;
+  font-size: 24px;
+}
+
+.tea-image {
+  max-width: 90%;
+  object-position: 42.5px 0;
+}
+
+@media screen and (max-width: 600px) {
+  .banner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner * {
+    align-self: unset;
+    text-align: unset;
+  }
+
+  .banner br {
+    display: none;
+  }
+
+  .banner-image {
+    margin: 0 -50px 0 0;
+  }
+}

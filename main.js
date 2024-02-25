@@ -33,31 +33,33 @@ const imageUrls = [
 
 const questions = [
   {
-    questionText: "What's your favourite season?",
-    answers: ["Spring", "Summer", "Autumn", "Winter"],
+    questionText: "Do you prefer hot or cold weather?",
+    answers: ["Hot weather", "Cold weather"],
   },
   {
-    questionText: "How do you feel when you wake up in the morning?",
-    answers: ["Bright and cheerful", "Grumpy and sluggish", "Tired and confused", "Peaceful and content"],
+    questionText: "Are you an early bird or a night owl?",
+    answers: ["Early bird", "Night owl"],
   },
   {
-    questionText: "Which of these activities is your favourite?",
-    answers: ["Reading", "Swimming", "Team sport", "Drawing"],
+    questionText: "Would you rather live in the countryside or the city?",
+    answers: ["Countryside", "City"],
   },
   {
-    questionText: "Which of these is your favourite movie genre?",
-    answers: ["Horror", "Romance", "Comedy", "Action"],
+    questionText: "Which flavours do you prefer, sweet or savoury?",
+    answers: ["Sweet", "Savoury"],
   },
   {
-    questionText: "What do you like to do on a Friday night?",
-    answers: ["Straight to bed", "See friends", "Party till sunrise", "Chill with my cats"],
+    questionText: "Are you an indoor person or an outdoor person?",
+    answers: ["Indoor person", "Outdoor person"],
   },
 ];
 
 function createOptionButton(answer, answerIndex, questionIndex) {
   const optionContainer = document.createElement("div");
+  optionContainer.className = "option-container";
 
   const optionRadioButton = document.createElement("input");
+  optionRadioButton.className = "option-radio-button";
   optionRadioButton.type = "radio";
   optionRadioButton.name = `question-${questionIndex}`;
   optionRadioButton.id = `question-${questionIndex}-answer-${answerIndex}`;
@@ -66,6 +68,7 @@ function createOptionButton(answer, answerIndex, questionIndex) {
   optionContainer.appendChild(optionRadioButton);
 
   const optionLabel = document.createElement("label");
+  optionLabel.className = "option-label";
   optionLabel.htmlFor = `question-${questionIndex}-answer-${answerIndex}`;
   optionLabel.textContent = answer;
   optionContainer.appendChild(optionLabel);
@@ -80,10 +83,12 @@ function generateTeaMatch() {
   const imageContainer = document.createElement("div");
 
   const imageDescription = document.createElement("p");
+  imageDescription.className = "tea-image-description";
   imageDescription.textContent = "Look, it's you";
   imageContainer.appendChild(imageDescription);
 
   const image = document.createElement("img");
+  image.className = "tea-image";
   image.src = randomImageUrl;
   image.alt = randomImageUrl.slice("images/".length, randomImageUrl.length - ".webp".length).replaceAll("-", " ");
   imageContainer.appendChild(image);
@@ -95,8 +100,10 @@ function generateQuestion(questionIndex) {
   const question = questions[questionIndex];
 
   const questionContainer = document.createElement("form");
+  questionContainer.className = "question-container";
 
   const questionParagraph = document.createElement("p");
+  questionParagraph.className = "question-paragraph";
   questionParagraph.textContent = question.questionText;
   questionContainer.appendChild(questionParagraph);
 
@@ -112,14 +119,14 @@ function generateQuestion(questionIndex) {
   const confirmButton = document.createElement("button");
   if (questionIndex === questions.length - 1) {
     confirmButton.textContent = "Spill the tea";
-    questionContainer.addEventListener("submit", function (event) {
+    questionContainer.addEventListener("submit", function completeQuestions(event) {
       event.preventDefault();
       confirmButton.remove();
       generateTeaMatch();
     });
   } else {
     confirmButton.textContent = "Next question";
-    questionContainer.addEventListener("submit", function (event) {
+    questionContainer.addEventListener("submit", function getNextQuestion(event) {
       event.preventDefault();
       confirmButton.remove();
       generateQuestion(questionIndex + 1);
@@ -132,4 +139,8 @@ function generateQuestion(questionIndex) {
   document.body.appendChild(questionContainer);
 }
 
-generateQuestion(0);
+const startButton = document.querySelector(".start-button");
+startButton.addEventListener("click", function startQuestions() {
+  startButton.remove();
+  generateQuestion(0);
+});
